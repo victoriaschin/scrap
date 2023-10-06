@@ -1,0 +1,19 @@
+function route-segs(n) {
+{ if n = 0 or n = 1
+    then return [] ; empty array
+  else if n = 2
+    then return [(1-2)]
+  else
+    int pivot = (ceil (n/2))
+    firsthalf[] = route-segs(pivot)
+    secondhalf[] = route-segs(floor n/2)
+}
+for (i = 1 ; i < pivot; i++){
+  firsthalf.add([i - pivot)]
+  }
+
+  for (i = 1 ; i < pivot); i++) {
+  secondhalf.add([pivot - i)]
+  }
+  return append(firsthalf, secondhalf)
+}
