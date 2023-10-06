@@ -1,0 +1,62 @@
+function findBrick(matrixB(n, n)){
+Array cross[] = [] 
+for (i = 0; i < n; i ++) {
+  if checkadj ((ceil n/2), i) {
+    then return point((ceil n/2), i)
+  else if checkadj(i, (ceil n/2))
+    then return point(i, (ceil n/2))
+  else if checkadj(0, i)
+    then return point(0, i)
+  else if checkadj(n, i)
+    then return point(n, i)
+  else if checkadj(i, 0)
+    then return point(i, 0)
+  else if checkadj(i, n)
+    then return point(i, n)
+else 
+  cross append ((ceil n/2), i) 
+    && cross append (i, (ceil n/2))
+  maxPt = findMax(cross)
+  rightNeigh = Point(maxPt.x + 1, maxPt.y)
+  leftNeigh = Point(maxPt.x - 1, maxPt.y)
+  upNeigh = Point(maxPt.x, maxPt.y - 1)
+  downNeigh = Point(maxPt.x, maxPt.y + 1)
+  neighbors[] = []
+  append (neighbors, rightNeigh)
+  append (neighbors, leftNeigh)
+  append (neighbors, upNeigh)
+  append (neighbors, downNeigh)
+  neighMax = findMax(neighbors)
+  if (neighMax.x <= ceil(n/2) && neighMax.y <= ceil(n/2)) {
+    then firstMatrix = Matrix[0 -> ceil(n/2) , 0 -> ceil(n/2)] // creating matrix from 0 to ceil(n/2) by 0 to ceil(n/2)
+        findBrick(firstMatrix(ceil(n/2), ceil(n/2)))  
+  else if (neighMax.x >= ceil(n/2) && neighMax.y <= ceil(n/2))
+    then secondMatrix = Matrix[(ceil(n/2) + 1) -> n, 0 -> ceil(n/2)] // creating matrix from ceil(n/2)+1 to n by 0 to ceil(n/2)
+        findBrick(secondMatrix(floor(n/2), floor(n/2)))
+  else if (neighMax.x <= ceil(n/2) && neighMax.y >= ceil(n/2))
+    then thirdMatrix = Matrix[0 -> ceil(n/2) , ceil(n/2) + 1 -> n] // creating matrix from 0 to ceil(n/2) by ceil(n/2)+1 to n
+        findBrick(thirdMatrix(floor(n/2), floor(n/2)))
+  else if (neighMax.x >= ceil(n/2) && neighMax.y >= ceil(n/2))
+    then fourthMatrix = [ceil(n/2) + 1 -> n , ceil(n/2) + 1 -> n] // creating matrix from ceil(n/2)+1 to n by ceil(n/2)+1 to n
+        findBrick(fourthMatrix(floor(n/2), floor(n/2)))
+      }
+    }
+  }
+}
+
+// checks to see if a point is the largest amongst its neighbors
+function checkadj(point(x,y)) {
+return (valueOf(x,y) > ((x + 1), y)
+  && (valueOf(x,y) > ((x - 1), y)
+  && (valueOf(x,y) > (x, (y + 1))
+  && (valueOf(x,y) > (x, (y - 1))
+}
+
+// takes in an Array of Points and returns the point where the max is 
+function findMax(arrayOfPos) {
+Point max = arrayOfPos[0]
+for (i = 0; i < arraySize; i++) 
+if valueOf(max) < valueOf(arrayofPos[i])
+  then max = arrayOfPos[i]
+return max
+}
